@@ -14,8 +14,6 @@ function addCarreras(data,files){
         }else{
             let carrera = { nombre: data.nombre }
 
-            // console.log(files);
-            
             if(files){
                 carrera = { 
                     ...carrera, 
