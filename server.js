@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { urldb, publicRoute } = require('./config')
 const app = express();
+const { urldb, publicRoute } = require('./config')
 const db = require("./db")
 const { routes } = require('./network/routes')
 
