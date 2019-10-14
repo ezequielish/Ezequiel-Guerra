@@ -9,18 +9,18 @@ const db = require("../db")
 const users = [
     {
 
-        username: 'root@undefined.sh',
+        username: 'ezequiel',
         name: 'ROOT',
         password: 'secret',
         isAdmin: true
     },
     {
-        username: 'jose@undefined.sh',
+        username: 'jose',
         name: 'Jose Maria',
         password: 'public'
     },
     {
-        username: 'maria@undefined.sh',
+        username: 'maria',
         name: 'Maria Jose',
         password: 'public'
     }

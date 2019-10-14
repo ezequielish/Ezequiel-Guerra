@@ -2,38 +2,33 @@ const Model = require('./model');
 
 let resultS = []
 
-// async function getCursos(filterCurso) {
-//     return new Promise((resolve, reject) => {
-//         let filter = {};
-//         if (filterCurso !== null) {
-//             filter = { _id: filterCurso };
-//         }
+async function getUser(filterUser) {
+        let filter = {}
 
-//         Model.find(filter)
-//             .populate('carrera')
-//             .exec((error, populated) => {
-//                 if (error) {
-//                     reject(error);
-//                     return false;
-//                 }
-                
-//                 resolve(populated);
-//             });
-//     })
+        if (filterUser !== null) {
+            filter = { username: filterUser }
+        }
+        try {
+            const result = await Model.find(filter);
+            // return resultS;
+            return result;
+        } catch (err) {
+            return err;
+        }
 
-// }
+}
 
 async function addUser(user) {
-    try{
+    try {
         const myUser = new Model(user);
         return myUser.save();
-    }catch(e){
+    } catch (e) {
         console.log(e);
-        
+
     }
 }
 
 module.exports = {
-    // list: getCursos,
+    list: getUser,
     add: addUser
 }

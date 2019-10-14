@@ -4,9 +4,6 @@ const router = express.Router();
 
 const { success,error } = require('../../network/response')
 const { listCursos,addCursos } = require('./controller')
-// const { succes, error } = require("../../network/response")
-// const { addCategory } = require("./controller")
-// const { iconsFile } = require("../../config")
 const { configFile } = require('../../utils/multerFileName')
 const upload = configFile('cursos')
 
