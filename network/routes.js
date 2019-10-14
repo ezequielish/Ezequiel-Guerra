@@ -6,7 +6,7 @@ const auth = require('../components/auth/network')
 function routes(server){
     server.use("/carreras", carreras)
     server.use("/cursos", cursos)
-    server.use("/sign-in", auth)
+    server.use("/auth", auth)
 }
 
 module.exports = {

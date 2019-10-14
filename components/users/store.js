@@ -24,7 +24,6 @@ async function addUser(user) {
         return myUser.save();
     } catch (e) {
         console.log(e);
-
     }
 }
 

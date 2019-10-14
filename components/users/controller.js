@@ -1,26 +1,40 @@
-// const { list,add } = require('./store');
-// const bcrypt = require('bcrypt');
-// // const { host,port,fileCursos,publicRoute } = require('../../config')
+const { add } = require('./store');
+const bcrypt = require('bcrypt');
 
-// // function listCursos(id){
-// //     return new Promise((resolve, reject) => {
-// //         resolve(list(id));
-// //     })
-// // }
+async function hashUser(user) {
+    const { username, name, password } = user
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const userF = {
+        name,
+        username,
+        password: hashedPassword,
+        isAdmin: Boolean(false)
+    }
 
-// function addCursos(data,files){
-//     return new Promise((resolve, reject) =>{       
-//         if(!data.nombre){
-//             console.log('[carrerasController] carrera no valida');
-//             reject("Los datos son incorrectos")
-//         }else{
+    return userF
+}
 
-            
-//         }
-//     })
-// }
+function signup(username,password,name){
+    return new Promise(async (resolve, reject) =>{       
+        if(!username || !password || !name){
+            console.log('[UsersController] usuario no valido');
+            reject("Los datos son incorrectos")
+        }else{
+            let user = {
+                name,
+                username,
+                password
+            }
 
-// module.exports = {
-//     listCursos,
-//     addCursos
-// }
+            const userSchema = await hashUser(user)
+            delete user.password
+            add(userSchema)
+            resolve(user)
+        }
+    })
+}
+
+module.exports = {
+    // listCursos,
+    signup
+}

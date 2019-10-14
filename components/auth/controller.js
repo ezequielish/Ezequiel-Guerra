@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const getApiKey = require('../apiKeys/store');
 const { authJwtSecret } = require('../../config');
 require('../../utils/auth/strategies/basic');
-function signin(apiKeyToken, req, res, next) {
+function signin(apiKeyToken, req, res) {
   return new Promise(async (resolve, reject) => {
     if (!apiKeyToken) {
       reject(boom.unauthorized('apiKeyToken is required'));
@@ -41,49 +41,10 @@ function signin(apiKeyToken, req, res, next) {
       } catch (err) {
         reject(err)
       }
-    })(req, res, next);
+    })(req, res);
   })
 
 }
 module.exports = {
   signin
 }
-
-//   // Basic strategy
-
-//   passport.authenticate('basic', function(error, user) {
-//     try {
-//       if (error || !user) {
-//         next(boom.unauthorized());
-//       }
-
-//       req.login(user, { session: false }, async function(error) {
-//         if (error) {
-//           next(error);
-//         }
-
-//         const apiKey = await getApiKey({ token: apiKeyToken });
-
-//         if (!apiKey) {
-//           next(boom.unauthorized());
-//         }
-
-//         const { _id: id, name, username } = user;
-
-//         const payload = {
-//           sub: id,
-//           name,
-//           username,
-//           scopes: apiKey.scopes
-//         };
-
-//         const token = jwt.sign(payload, authJwtSecret, {//firmamo con el secret
-//           expiresIn: '15m'
-//         });
-
-//         return res.status(200).json({ token, user: { id, name, email } });
-//       });
-//     } catch (error) {
-//       next(error);
-//     }
-//   })(req, res, next);
