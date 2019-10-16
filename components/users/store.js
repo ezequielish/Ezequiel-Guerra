@@ -9,7 +9,7 @@ async function getUser(filterUser) {
             filter = { username: filterUser }
         }
         try {
-            const result = await Model.find(filter);
+            const result = await Model.findOne(filter);
             // return resultS;
             return result;
         } catch (err) {

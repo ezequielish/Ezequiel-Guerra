@@ -9,19 +9,22 @@ function signin(apiKeyToken, req, res) {
     if (!apiKeyToken) {
       reject(boom.unauthorized('apiKeyToken is required'));
     }
-    passport.authenticate('basic', function (error, user) {
+    passport.authenticate('basic', function (error, user) {//aplicamos nuestra estrategia basic
       try {
         if (error || !user) {
           reject(boom.unauthorized());
+          return
         }
         req.login(user, { session: false }, async function (error) {
           if (error) {
             reject(error);
+            return
           }
 
           const apiKey = await getApiKey(apiKeyToken);//validamos el api-key token
           if (!apiKey) {
             reject(boom.unauthorized());
+            return
           }
 
           const { _id: id, name, username } = user;

@@ -2,7 +2,7 @@ const passport = require('passport');
 const { Strategy, ExtractJwt } = require('passport-jwt');
 const boom = require('@hapi/boom');
 
-const { list } = require('../../../components/users')
+const { getUser } = require('../../../components/users/controller')
 const { authJwtSecret } = require('../../../config');
 
 passport.use(
@@ -14,14 +14,12 @@ passport.use(
     async function(tokenPayload, cb) {
   
       try {
-        const user = await list(tokenPayload.username);
-
+        const user = await getUser(tokenPayload.username);
         if (!user) {
           return cb(boom.unauthorized(), false);
         }
 
         delete user.password;
-
         cb(null, { ...user, scopes: tokenPayload.scopes });
       } catch (error) {
         return cb(error);

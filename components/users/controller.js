@@ -1,4 +1,4 @@
-const { add } = require('./store');
+const { add,list } = require('./store');
 const bcrypt = require('bcrypt');
 
 async function hashUser(user) {
@@ -14,6 +14,12 @@ async function hashUser(user) {
     return userF
 }
 
+function getUser(user){
+    return new Promise(async (resolve,reject) =>{
+        const result = await list(user)
+        resolve(result)
+    })
+}
 function signup(username,password,name){
     return new Promise(async (resolve, reject) =>{       
         if(!username || !password || !name){
@@ -35,6 +41,6 @@ function signup(username,password,name){
 }
 
 module.exports = {
-    // listCursos,
-    signup
+    signup,
+    getUser
 }
