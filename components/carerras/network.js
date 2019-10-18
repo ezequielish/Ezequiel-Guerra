@@ -8,7 +8,7 @@ const { configFile } = require('../../utils/multerFileName')
 const upload = configFile('carreras')
 
 const passport = require('passport');
-require('../../utils/auth/strategies/jwt')
+// require('../../utils/auth/strategies/jwt')
 const scopeValidationHandler = require('../../utils/middlewares/scopesValidationHandler')
 
 router.get('/',
@@ -24,7 +24,7 @@ router.get('/',
     })
 
 router.post('/',
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     scopeValidationHandler(['create:carrera']),
     upload.array('image'),
     function (req, resp) {
