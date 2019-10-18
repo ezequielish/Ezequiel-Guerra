@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const config = {
     dev: process.env.NODE_ENV || 'development',
-    port: process.env.PORT_SERVER || 3000,
+    port: process.env.PORT || 3000,
     host: process.env.HOST || 'http://localhost',
     urldb: process.env.DB || '',
     publicRoute: process.env.PUBLIC_ROUTE || 'app',
