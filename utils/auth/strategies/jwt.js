@@ -1,14 +1,15 @@
 const passport = require('passport');
-const { Strategy, ExtractJwt } = require('passport-jwt');
+const { ExtractJwt } = require('passport-jwt');
+const JwtStrategy = require('passport-jwt').Strategy
 const boom = require('@hapi/boom');
 
 const { getUser } = require('../../../components/users/controller')
 const { authJwtSecret } = require('../../../config');
 
 passport.use(
-  new Strategy(
+  new JwtStrategy(
     {
-      secretOrKey: 'isscrete',
+      secretOrKey: authJwtSecret,
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     },
     async function(tokenPayload, cb) {
