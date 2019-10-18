@@ -5,6 +5,7 @@ const boom = require('@hapi/boom');
 const { getUser } = require('../../../components/users/controller')
 const { authJwtSecret } = require('../../../config');
 
+console.log(authJwtSecret)
 passport.use(
   new Strategy(
     {
