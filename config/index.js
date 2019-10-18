@@ -9,7 +9,7 @@ const config = {
     publicRoute: process.env.PUBLIC_ROUTE || 'app',
     fileRoute: process.env.FILE_ROUTE || 'carreras',
     fileCursos: process.env.FILE_CURSOS || 'cursos',
-    authJwtSecret: process.env.AUTH_JWT_SECRET || 'undefined',
+    authJwtSecret: process.env.AUTH_JWT_SECRET,
     pubicApiKeyToken: process.env.PUBLIC_API_KEY_TOKEN
 }
 
