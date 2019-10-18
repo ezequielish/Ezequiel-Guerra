@@ -6,7 +6,9 @@ const { success,error } = require('../../network/response')
 const { listCursos,addCursos } = require('./controller')
 const { configFile } = require('../../utils/multerFileName')
 const upload = configFile('cursos')
-
+const passport = require('passport');
+require('../../utils/auth/strategies/jwt')
+const scopeValidationHandler = require('../../utils/middlewares/scopesValidationHandler')
 
 router.get('/', (req,res) =>{
     let id = req.query.id || null
@@ -19,7 +21,10 @@ router.get('/', (req,res) =>{
     })
 })
 
-router.post('/',upload.array('image'), function (req, resp) {
+router.post('/',
+passport.authenticate('jwt', { session: false }),
+scopeValidationHandler(['create:cursos']),
+upload.array('image'), function (req, resp) {
     addCursos(req.body,req.files)
         .then(data => {
             success(req, resp, data, 201);
