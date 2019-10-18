@@ -12,8 +12,6 @@ require('../../utils/auth/strategies/jwt')
 const scopeValidationHandler = require('../../utils/middlewares/scopesValidationHandler')
 
 router.get('/',
-    passport.authenticate('jwt', { session: false }),
-    scopeValidationHandler(['read:carrera']),
     (req, res) => {
         let id = req.query.id || null
         listCarreras(id)
@@ -26,8 +24,8 @@ router.get('/',
     })
 
 router.post('/',
-    scopeValidationHandler(['create:carrera']),
     passport.authenticate('jwt', { session: false }),
+    scopeValidationHandler(['create:carrera']),
     upload.array('image'),
     function (req, resp) {
         addCarreras(req.body, req.files)

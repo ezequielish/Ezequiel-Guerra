@@ -12,9 +12,10 @@ function scopesValidationHandler(allowedScopes) {
       .find(allowed => Boolean(allowed));//return true || false
 
     if (hasAccess) {
-      // next();
+      next();
     } else {
-      next(boom.unauthorized('Insufficient scoopes'));
+      next(boom.unauthorized(), false)
+      return
     }
   };
 }
