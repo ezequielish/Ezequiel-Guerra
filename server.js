@@ -3,8 +3,24 @@ const bodyParser = require("body-parser");
 const app = express();
 const { urldb, publicRoute } = require('./config')
 const db = require("./db")
+const helmet = require("helmet");
+const cors = require("cors");
 const { routes } = require('./network/routes')
 
+//const corsOptions = { origin: "http://localhost:8080" };
+const corsOptions = { origin: "*" };
+// var whitelist = ['http://localhost:3000/', 'http://localhost:8080']
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
+
+app.use(cors(corsOptions));
 const port = process.env.PORT;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
