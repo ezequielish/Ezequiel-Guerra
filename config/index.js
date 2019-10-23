@@ -10,7 +10,9 @@ const config = {
     fileRoute: process.env.FILE_ROUTE || 'carreras',
     fileCursos: process.env.FILE_CURSOS || 'cursos',
     authJwtSecret: process.env.AUTH_JWT_SECRET,
-    pubicApiKeyToken: process.env.PUBLIC_API_KEY_TOKEN
+    pubicApiKeyToken: process.env.PUBLIC_API_KEY_TOKEN,
+    myEmail: process.env.EMAIL,
+    passEmail: process.env.PASS_EMAIL
 }
 
 module.exports = config
