@@ -26,7 +26,6 @@ function sendMail(body) {
 
         transporter.sendMail(mailOptions, (err, data) => {
             if (err) {
-                console.log(err)
               reject('ha ocurrido un error')
             }
             resolve('email enviado')
