@@ -8,7 +8,7 @@ const cors = require("cors");
 const { routes } = require('./network/routes')
 
 //const corsOptions = { origin: "http://localhost:8080" };
-const corsOptions = { origin: "https://ezequielish.github.io/ezequiel/" };
+const corsOptions = { origin: "*" };
 // var whitelist = ['http://localhost:3000/', 'http://localhost:8080']
 // var corsOptions = {
 //   origin: function (origin, callback) {
