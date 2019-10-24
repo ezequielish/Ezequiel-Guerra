@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const { myEmail, passEmail } = require('../../config');
 function sendMail(body) {
     return new Promise((resolve, reject) => {
+        console.log(body)
         const { name, subject, email, message } = body
 
         if (!name || !email || !message) {
